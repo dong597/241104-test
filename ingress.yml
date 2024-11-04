@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-portal
+  namespace: 241104-project
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    name: ingress-portal
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: www.241104project.pri
+    http:
+      paths:
+      - pathType: Prefix
+        path: /($)
+        backend:
+          service:
+            name: svc-main
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: /blue(/|$)
+        backend:
+          service:
+            name: svc-blue
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: /green(/|$)
+        backend:
+          service:
+            name: svc-green
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: /red(/|$)
+        backend:
+          service:
+            name: svc-red
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: /*
+        backend:
+          service:
+            name: svc-nothing
+            port: 
+              number: 80

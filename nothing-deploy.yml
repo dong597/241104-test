@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-nothing
+  namespace: 241104-project
+spec:
+  selector:
+    app: nothing
+  ports:
+  - port: 80
+    targetPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-nothing
+  namespace: 241104-project
+spec:
+  selector:
+    matchLabels:
+      app: nothing
+  template:
+    metadata:
+      labels:
+        app: nothing
+    spec:
+      containers:
+      - name: ctn-nothing
+        image: dododong478/portal:nothing
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: hubsec

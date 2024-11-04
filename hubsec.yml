@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata: 
+  name: hubsec
+  namespace: 241104-project
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CgkJCSJhdXRoIjogIlpHOWtiMlJ2Ym1jME56ZzZZMmhwWTJ0bGJrQXpPVEExIgoJCX0KCX0KfQ==
